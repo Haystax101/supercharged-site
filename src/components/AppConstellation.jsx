@@ -73,33 +73,27 @@ const SWARM_EDGES = [
 
 function SimulateNode() {
     return (
-        <>
-            <div className="cn-swarm">
-                <svg viewBox="0 0 212 112" className="cn-swarm-svg" aria-hidden="true">
-                    {SWARM_EDGES.map(([a, b], i) => (
-                        <line
-                            key={i}
-                            x1={SWARM_NODES[a].x} y1={SWARM_NODES[a].y}
-                            x2={SWARM_NODES[b].x} y2={SWARM_NODES[b].y}
-                            className="cn-edge"
-                            style={{ animationDelay: `${(i % 6) * -0.55}s` }}
-                        />
-                    ))}
-                    {SWARM_NODES.map((n, i) => (
-                        <circle
-                            key={i}
-                            cx={n.x} cy={n.y} r={n.r}
-                            className="cn-node"
-                            style={{ opacity: n.o, animationDelay: `${(i % 5) * -0.9}s` }}
-                        />
-                    ))}
-                </svg>
-            </div>
-            <div className="cn-foot">
-                <span className="cn-foot-label">Confidence</span>
-                <span className="serif-num cn-foot-val">31&ndash;44%</span>
-            </div>
-        </>
+        <div className="cn-swarm">
+            <svg viewBox="0 0 212 112" className="cn-swarm-svg" aria-hidden="true">
+                {SWARM_EDGES.map(([a, b], i) => (
+                    <line
+                        key={i}
+                        x1={SWARM_NODES[a].x} y1={SWARM_NODES[a].y}
+                        x2={SWARM_NODES[b].x} y2={SWARM_NODES[b].y}
+                        className="cn-edge"
+                        style={{ animationDelay: `${(i % 6) * -0.55}s` }}
+                    />
+                ))}
+                {SWARM_NODES.map((n, i) => (
+                    <circle
+                        key={i}
+                        cx={n.x} cy={n.y} r={n.r}
+                        className="cn-node"
+                        style={{ opacity: n.o, animationDelay: `${(i % 5) * -0.9}s` }}
+                    />
+                ))}
+            </svg>
+        </div>
     );
 }
 

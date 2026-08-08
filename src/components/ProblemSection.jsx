@@ -1,113 +1,114 @@
 import { motion } from 'framer-motion';
 
 /**
- * The problem, as framed in the pitch deck: manual outreach is capped on
- * volume, blind on priority, and silent on feedback — followed by the four
- * disconnected habits students currently patch together.
+ * The problem, told as the thing students actually feel: not "outreach is
+ * inefficient" but "I cannot get near the people who decide".
+ *
+ * The four stages are the manual workflow, and they map one to one onto the
+ * four spokes in the hero. Naming the replacement under each stage sets up the
+ * sections below without explaining them yet.
  */
 
-const PROBLEMS = [
+const STAGES = [
     {
         n: '01',
-        title: 'Capped on volume',
-        body: 'Every message written by hand puts a hard ceiling on how many people you can ever reach. You manage maybe a hundred a month — and the one contact who would actually change things could be number ten thousand.',
+        doing: 'Find someone worth emailing',
+        pain: 'You work through LinkedIn, the alumni list and whoever your society has contacts for, one profile at a time. An evening goes, and you still are not sure any of them are the right person.',
+        swap: 'Search',
     },
     {
         n: '02',
-        title: 'Blind on priority',
-        body: 'There is no signal for who is worth the time until you have already spent it. A long shot gets exactly the same effort as the person who would have replied within the hour.',
+        doing: 'Guess whether they will care',
+        pain: 'Nothing tells you who is actually likely to write back. The long shot gets the same careful hour as the person who would have replied that afternoon.',
+        swap: 'Simulate',
     },
     {
         n: '03',
-        title: 'Silent on feedback',
-        body: 'You find out whether it worked only once it has gone. Framing, timing and angle are all guessed blind, so a failed approach gets repeated on the very next attempt.',
+        doing: 'Write it cold, and hope',
+        pain: 'An hour on a message that still lands like the other four hundred in their inbox, because you had nothing specific to open on and no idea what usually works.',
+        swap: 'Draft',
     },
-];
-
-const HABITS = [
-    { label: 'LinkedIn cold messages', fails: ['High volume', 'Low response rate', 'No idea what worked'] },
-    { label: 'Society events and panels', fails: ['Barely any one-to-one', 'Capped by the calendar', 'Hard to follow up'] },
-    { label: 'Alumni lists and coffee chats', fails: ['One profile at a time', 'No sense of fit first', 'Slow to scale'] },
-    { label: 'Spreadsheets and memory', fails: ['Tracked entirely by hand', 'Follow-ups slip', 'No view of the pipeline'] },
+    {
+        n: '04',
+        doing: 'Wait, then lose the thread',
+        pain: 'No reply and no reason why. The follow-up that would have roughly doubled your odds slips, because it lives in your head and nowhere else.',
+        swap: 'Track',
+    },
 ];
 
 export default function ProblemSection() {
     const container = {
         hidden: { opacity: 0 },
-        show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+        show: { opacity: 1, transition: { staggerChildren: 0.12 } },
     };
 
     const item = {
-        hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+        hidden: { opacity: 0, y: 26 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
     };
 
     return (
         <div className="section-bg">
-            <div className="section" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+            <div className="section" style={{ paddingTop: '104px', paddingBottom: '104px' }}>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true, margin: '-100px' }}
-                    style={{ textAlign: 'center' }}
+                    className="pain-head"
                 >
-                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.1em', color: 'var(--label-color)', textTransform: 'uppercase', marginBottom: '24px' }}>
-                        The problem with breaking in
-                    </p>
-                    <h2 className="problem-headline" style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '52px', color: '#0f0e0d', letterSpacing: '-0.03em', lineHeight: 1.05, maxWidth: '860px', margin: '0 auto' }}>
-                        Doing it by hand is <span className="gradient-num">capped</span>,{' '}
-                        <span className="gradient-num">blind</span> and{' '}
-                        <span className="gradient-num">silent</span>.
+                    <p className="sec-label" style={{ textAlign: 'center' }}>The real problem</p>
+                    <h2 className="pain-headline">
+                        You cannot out-apply <span className="gradient-num">a name in the room</span>.
                     </h2>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '17px', color: '#4a4744', maxWidth: '520px', margin: '20px auto 0', lineHeight: 1.7 }}>
-                        Applications rank you against thousands of near-identical CVs. Fifteen minutes with someone already on the desk changes which pile you land in &mdash; and almost nobody knows how to get that call.
+                    <p className="pain-sub">
+                        The people who could actually change this for you are not hypothetical. The analyst who sat exactly where you are sitting two years ago. The alum who would happily give you fifteen minutes and tell you what the interview is really testing. They exist, they are reachable, and almost nobody finds them.
+                    </p>
+                    <p className="pain-sub pain-sub-tight">
+                        So you go back to the portal, send the same CV into a pile of eight thousand, and wait to be told no by an automated email in February.
                     </p>
                 </motion.div>
+
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    className="flow-lead"
+                >
+                    And if you do try to reach them, this is the week that follows.
+                </motion.p>
 
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: '-100px' }}
-                    className="problem-triple"
+                    viewport={{ once: true, margin: '-90px' }}
+                    className="flow"
                 >
-                    {PROBLEMS.map((p) => (
-                        <motion.div key={p.n} variants={item} className="glass-card problem-card">
-                            <span className="problem-num">{p.n}</span>
-                            <h3 className="problem-card-title">{p.title}</h3>
-                            <p className="problem-card-body">{p.body}</p>
+                    {STAGES.map((st) => (
+                        <motion.div key={st.n} variants={item} className="glass-card flow-step">
+                            <span className="flow-num">{st.n}</span>
+                            <h3 className="flow-doing">{st.doing}</h3>
+                            <p className="flow-pain">{st.pain}</p>
+                            <div className="flow-swap">
+                                <span className="flow-swap-label">Supercharged does this</span>
+                                <span className="flow-swap-name">{st.swap}</span>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="habits-block"
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    className="flow-foot"
                 >
-                    <p className="habits-lead">
-                        Instead you patch together four disconnected habits, none of which talk to each other.
-                    </p>
-                    <div className="habits-grid">
-                        {HABITS.map((h) => (
-                            <div key={h.label} className="habit">
-                                <p className="habit-label">{h.label}</p>
-                                {h.fails.map((f) => (
-                                    <p key={f} className="habit-fail">
-                                        <span className="habit-x">&#10005;</span> {f}
-                                    </p>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                    <p className="habits-foot">
-                        Hours a week, on activity that rarely turns into a real conversation.
-                    </p>
-                </motion.div>
+                    Four jobs, none of which is the conversation you actually wanted. Supercharged takes all four, and hands you back the last one.
+                </motion.p>
             </div>
         </div>
     );

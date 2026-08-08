@@ -47,14 +47,13 @@ function Section({ id, index, label, title, body, points, flip, children }) {
 }
 
 /** A faithful-enough frame of the app, in the site's glass skin. */
-function Screen({ tab, children }) {
+function Screen({ children }) {
     return (
         <div className="tab-screen">
-            <div className="tab-screen-nav">
-                {['Discover', 'Outreach', 'Tracking'].map((t) => (
-                    <span key={t} className={`demo-tab ${t === tab ? 'active' : ''}`}>{t}</span>
-                ))}
-                <span className="demo-user">You</span>
+            <div className="tab-screen-bar" aria-hidden="true">
+                <span className="tab-dot" style={{ background: '#ff5f56' }} />
+                <span className="tab-dot" style={{ background: '#ffbd2e' }} />
+                <span className="tab-dot" style={{ background: '#27c93f' }} />
             </div>
             <div className="tab-screen-body">{children}</div>
         </div>
@@ -95,9 +94,9 @@ export default function TabSections() {
                     'Ranks by likelihood of replying to you specifically',
                 ]}
             >
-                <Screen tab="Discover">
+                <Screen>
                     <div className="ts-query">
-                        <span className="ts-query-text">Spring week at J.P. Morgan &mdash; Sales &amp; Trading, Oxford alumni if possible</span>
+                        <span className="ts-query-text">Spring week at J.P. Morgan, Sales &amp; Trading, Oxford alumni if possible</span>
                         <span className="demo-find-btn">Find</span>
                     </div>
                     <p className="demo-meta" style={{ margin: '12px 0 10px' }}>14 people found &middot; ranked by fit</p>
@@ -134,7 +133,7 @@ export default function TabSections() {
                 ]}
                 flip
             >
-                <Screen tab="Discover">
+                <Screen>
                     <div className="ts-person-head">
                         <MockAvatar name="Priya Raghavan" i={0} size={44} />
                         <div style={{ minWidth: 0, flex: 1 }}>
@@ -171,12 +170,8 @@ export default function TabSections() {
                             Lead with the <span style={{ color: 'var(--accent)', fontWeight: 600 }}>shared course</span> angle.
                         </p>
                         <p className="demo-spot-sub">
-                            Ask how she moved from Geography onto the desk &mdash; not whether there&rsquo;s a spot going.
+                            Ask how she moved from Geography onto the desk, not whether there is a spot going.
                         </p>
-                        <div className="demo-spot-foot">
-                            <span className="demo-spot-label">Confidence</span>
-                            <span className="serif-num demo-spot-band">Moderate &middot; 31&ndash;44%</span>
-                        </div>
                     </div>
                 </Screen>
             </Section>
@@ -187,14 +182,14 @@ export default function TabSections() {
                 index="03"
                 label="Outreach"
                 title="The email you'd have written, with the time you don't have."
-                body="You write one short message during setup. Every draft afterwards borrows your rhythm, your hedges and your sign-off, then gets checked against what actually earns replies. Nothing sends until you approve it, and it goes from your own mailbox."
+                body="Every draft is assembled on the same skeleton, and that skeleton comes from an evidence review of what actually gets replies: length, opening line, the shape of the ask, and when to follow up. Only the personal parts are written fresh, in the voice learned from your own writing sample."
                 points={[
-                    'Drafted in your voice, from your own writing sample',
-                    'Edit freely — it re-checks what you changed',
-                    'Sends via your Outlook or Gmail, never a shared relay',
+                    'Around 100 words, the length replies peak at',
+                    'Opens on a real overlap, not on your CV',
+                    'One time boxed ask, with the follow-up already queued',
                 ]}
             >
-                <Screen tab="Outreach">
+                <Screen>
                     <div className="ts-mail">
                         <div className="ts-rail">
                             {PEOPLE.concat([{ name: 'Daniel Okonjo', i: 2 }]).map((p, i) => (
@@ -208,16 +203,33 @@ export default function TabSections() {
                         <div className="ts-draft">
                             <div className="ts-draft-head">
                                 <span className="demo-email-field">To: <strong>priya.raghavan@jpmorgan.com</strong></span>
-                                <span className="demo-email-field">Subject: <strong>Geography &rarr; rates desk, and how you did it</strong></span>
+                                <span className="demo-email-field">Subject: <strong>Oxford student, quick S&amp;T question</strong></span>
                             </div>
+                            {/* Mirrors convex/lib/draft.ts: fixed skeleton, only the
+                                hook, interest line and three bullets personalised.
+                                House rule, and the app enforces it too: no em dashes. */}
                             <p className="ts-draft-body">
-                                Hi Priya &mdash; I&rsquo;m a first-year geographer at Oxford and I saw you made the same jump onto a rates desk. That path is a bit of a mystery from where I&rsquo;m sitting. If you had fifteen minutes some time I&rsquo;d love to hear how you did it &mdash; totally understand if not.
-                                <br /><br />Alex
+                                Hi Priya,
+                                <br /><br />
+                                I&rsquo;m Alex, a first-year at Oxford reading Geography, and we overlapped at Christ Church. I&rsquo;ve just taken over the Geography Society speaker series you used to run.
+                                <br /><br />
+                                Having done a Spring Week at J.P. Morgan I&rsquo;m set on Sales &amp; Trading, and your move from Geography onto rates is the exact path I can&rsquo;t find anyone to explain. I&rsquo;d love to ask you:
+                            </p>
+                            <ul className="ts-draft-bullets">
+                                <li>What the first hour on the desk actually looks like</li>
+                                <li>Whether Geography helped or hurt you in interviews</li>
+                                <li>What you&rsquo;d tell a first-year with a Spring Week and nothing else lined up</li>
+                            </ul>
+                            <p className="ts-draft-body ts-draft-close">
+                                Would you be open to fifteen minutes in the next week or two?
+                                <br /><br />
+                                Best,<br />Alex
                             </p>
                             <div className="ts-checks">
-                                <span className="demo-check"><span style={{ color: '#16a34a' }}>✓</span> Reads like you, not like AI</span>
-                                <span className="demo-check"><span style={{ color: '#16a34a' }}>✓</span> Asks for time, not a job</span>
-                                <span className="demo-check"><span style={{ color: 'var(--amber)' }}>✦</span> Runs slightly long &mdash; trim one line</span>
+                                <span className="demo-check"><span style={{ color: '#16a34a' }}>✓</span> 112 words, inside the range replies peak at</span>
+                                <span className="demo-check"><span style={{ color: '#16a34a' }}>✓</span> Opens on the shared college, not the ask</span>
+                                <span className="demo-check"><span style={{ color: '#16a34a' }}>✓</span> Interest-based ask, time boxed and near term</span>
+                                <span className="demo-check"><span style={{ color: 'var(--amber)' }}>✦</span> Follow-up queued for day 5, then once more</span>
                             </div>
                             <div className="demo-send-row">
                                 <span className="demo-send-label">Send from</span>
@@ -243,7 +255,7 @@ export default function TabSections() {
                 ]}
                 flip
             >
-                <Screen tab="Tracking">
+                <Screen>
                     <div className="ts-track-head">
                         <span className="demo-meta" style={{ textAlign: 'left' }}>Network pulse</span>
                         <span className="ts-auto"><span className="demo-auto-dot" /> Auto mode on</span>
@@ -260,8 +272,8 @@ export default function TabSections() {
                         ))}
                     </div>
                     {[
-                        { who: 'Priya Raghavan', i: 0, badge: 'Next move', sum: 'Offered Thursday — confirm and send two questions' },
-                        { who: 'Tom Beckett', i: 3, badge: null, sum: 'Opened, day 6 — nudge once, then leave it' },
+                        { who: 'Priya Raghavan', i: 0, badge: 'Next move', sum: 'Offered Thursday, confirm and send two questions' },
+                        { who: 'Tom Beckett', i: 3, badge: null, sum: 'Opened on day 6, nudge once then leave it' },
                         { who: 'Hannah Okafor', i: 1, badge: null, sum: 'Follow-up sent automatically this morning' },
                     ].map((r) => (
                         <div key={r.who} className="mini-inbox-card">

@@ -84,7 +84,7 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                         {/* Job types mirror the goal picker in the app
                             (lib/onboardingData.ts). The 5th item repeats the
                             1st so the loop has no visible seam. */}
-                        <span className="rotator" aria-label="internships, placements, spring weeks or grad roles">
+                        <span className="rotator" aria-label="internships, placements, spring weeks or graduate jobs">
                             {/* The gradient goes on each word, not the track:
                                 a background-clip:text layer spanning all five
                                 escapes the parent's overflow clip, and each
@@ -93,7 +93,7 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                                 <span className="chromatic-text">internships</span>
                                 <span className="chromatic-text">placements</span>
                                 <span className="chromatic-text">spring weeks</span>
-                                <span className="chromatic-text">grad roles</span>
+                                <span className="chromatic-text">graduate jobs</span>
                                 <span className="chromatic-text">internships</span>
                             </span>
                         </span>
