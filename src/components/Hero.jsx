@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePostHog } from 'posthog-js/react';
-import HeroDemo from './HeroDemo';
+import AppConstellation from './AppConstellation';
 
 export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpenManifesto }) {
     const posthog = usePostHog();
@@ -17,18 +17,8 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const mockupAnim = {
-        hidden: { opacity: 0, scale: 0.95, y: 20 },
-        show: {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            transition: { delay: 0.6, duration: 0.8, ease: "backOut" }
-        }
-    };
-
     return (
-        <section className="hero">
+        <section className="hero is-centred">
 
             {/* NAV */}
             <nav className="anim-nav">
@@ -83,68 +73,61 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                 )}
             </AnimatePresence>
 
-            <div className="hero-grid-split">
+            <div className="hero-centre">
+                <motion.p custom={0} variants={animIn} initial="hidden" animate="show" className="badge">
+                    Now in pilot &middot; Cold outreach, warmed up
+                </motion.p>
 
-                {/* LEFT COMPONENT: TEXT */}
-                <div className="hero-text">
-                    <motion.p custom={0} variants={animIn} initial="hidden" animate="show" className="badge">
-                        Now in pilot &middot; Cold outreach, warmed up
-                    </motion.p>
-
-                    <motion.h1 custom={1} variants={animIn} initial="hidden" animate="show" className="headline" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)', lineHeight: 1.05, letterSpacing: '-0.03em', whiteSpace: 'normal' }}>
-                        <span className="headline-find">
-                            Find
-                            {/* Job types mirror the goal picker in the app
-                                (lib/onboardingData.ts). The 5th item repeats the
-                                1st so the loop has no visible seam. */}
-                            <span className="rotator" aria-label="internships, placements, springs or grad roles">
-                                {/* The gradient goes on each word, not the track:
-                                    a background-clip:text layer spanning all five
-                                    escapes the parent's overflow clip, and each
-                                    word gets the full colour ramp this way. */}
-                                <span className="rotator-track" aria-hidden="true">
-                                    <span className="chromatic-text">internships</span>
-                                    <span className="chromatic-text">placements</span>
-                                    <span className="chromatic-text">springs</span>
-                                    <span className="chromatic-text">grad roles</span>
-                                    <span className="chromatic-text">internships</span>
-                                </span>
+                <motion.h1 custom={1} variants={animIn} initial="hidden" animate="show" className="headline">
+                    <span className="headline-find">
+                        Find
+                        {/* Job types mirror the goal picker in the app
+                            (lib/onboardingData.ts). The 5th item repeats the
+                            1st so the loop has no visible seam. */}
+                        <span className="rotator" aria-label="internships, placements, springs or grad roles">
+                            {/* The gradient goes on each word, not the track:
+                                a background-clip:text layer spanning all five
+                                escapes the parent's overflow clip, and each
+                                word gets the full colour ramp this way. */}
+                            <span className="rotator-track" aria-hidden="true">
+                                <span className="chromatic-text">internships</span>
+                                <span className="chromatic-text">placements</span>
+                                <span className="chromatic-text">springs</span>
+                                <span className="chromatic-text">grad roles</span>
+                                <span className="chromatic-text">internships</span>
                             </span>
                         </span>
-                        through the people already there.
-                    </motion.h1>
+                    </span>
+                    through the people already there.
+                </motion.h1>
 
-                    <motion.p custom={2} variants={animIn} initial="hidden" animate="show" className="subheadline">
-                        Tell Supercharged the role, the firms and the season. It finds the alumni and analysts already there, works out who will actually reply, and writes the email in your voice.
-                    </motion.p>
+                <motion.p custom={2} variants={animIn} initial="hidden" animate="show" className="subheadline">
+                    Tell Supercharged the role, the firms and the season. It finds the alumni and analysts already there, works out who will actually reply, and writes the email in your voice.
+                </motion.p>
 
-                    <motion.div custom={3} variants={animIn} initial="hidden" animate="show" className="cta-row">
-                        <button className="cta-primary waitlist-trigger" onClick={() => { posthog?.capture('waitlist_cta_clicked', { source: 'hero_primary' }); onOpenWaitlist(); }}>
-                            Secure my Spot
-                        </button>
-                        <a href="#how" className="cta-secondary">
-                            See how it works &darr;
-                        </a>
-                    </motion.div>
-
-                    <motion.div custom={4} variants={animIn} initial="hidden" animate="show" className="social-proof">
-                        <div className="avatar-stack">
-                            <div className="avatar-sm av-1" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #7c3aed, #db2777)', marginLeft: 0 }}></div>
-                            <div className="avatar-sm av-2" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #db2777, #f97316)', marginLeft: '-8px' }}></div>
-                            <div className="avatar-sm av-3" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #0891b2, #059669)', marginLeft: '-8px' }}></div>
-                            <div className="avatar-sm av-4" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #0284c7, #4f46e5)', marginLeft: '-8px' }}></div>
-                            <div className="avatar-sm av-5" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #10b981, #f59e0b)', marginLeft: '-8px' }}></div>
-                        </div>
-                        <span><span className="hero-waitlist-count chromatic-text">{waitlistCount}</span> people already supercharged</span>
-                    </motion.div>
-                </div>
-
-                {/* RIGHT COMPONENT: THE LIVE PRODUCT WALKTHROUGH */}
-                <motion.div variants={mockupAnim} initial="hidden" animate="show" className="hero-mockup">
-                    <HeroDemo />
+                <motion.div custom={3} variants={animIn} initial="hidden" animate="show" className="cta-row">
+                    <button className="cta-primary waitlist-trigger" onClick={() => { posthog?.capture('waitlist_cta_clicked', { source: 'hero_primary' }); onOpenWaitlist(); }}>
+                        Secure my Spot
+                    </button>
+                    <a href="#how" className="cta-secondary">
+                        See how it works &darr;
+                    </a>
                 </motion.div>
 
+                <motion.div custom={4} variants={animIn} initial="hidden" animate="show" className="social-proof">
+                    <div className="avatar-stack">
+                        <div className="avatar-sm av-1" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #7c3aed, #db2777)', marginLeft: 0 }}></div>
+                        <div className="avatar-sm av-2" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #db2777, #f97316)', marginLeft: '-8px' }}></div>
+                        <div className="avatar-sm av-3" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #0891b2, #059669)', marginLeft: '-8px' }}></div>
+                        <div className="avatar-sm av-4" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #0284c7, #4f46e5)', marginLeft: '-8px' }}></div>
+                        <div className="avatar-sm av-5" style={{ width: '26px', height: '26px', borderRadius: '50%', border: '2px solid #f6f3eb', background: 'linear-gradient(135deg, #10b981, #f59e0b)', marginLeft: '-8px' }}></div>
+                    </div>
+                    <span><span className="hero-waitlist-count chromatic-text">{waitlistCount}</span> people already supercharged</span>
+                </motion.div>
             </div>
+
+            {/* The whole product in one picture, below the fold-line. */}
+            <AppConstellation />
 
         </section>
     );
