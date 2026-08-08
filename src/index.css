@@ -4297,3 +4297,664 @@
         font-size: 20px;
       }
     }
+
+
+    /* ═══════════════════════════════════════════════════════════════
+       HERO DEMO — the looping Search / Simulate / Draft / Track window
+       ═══════════════════════════════════════════════════════════════ */
+
+    .hero-demo {
+      width: 100%;
+    }
+
+    .hero-demo-window {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.08), 0 28px 72px rgba(0, 0, 0, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    }
+
+    .demo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .demo-user {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #0f0e0d;
+      color: #fffefd;
+      font-family: var(--font-body);
+      font-size: 8.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .demo-tab {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.42);
+      padding: 5px 13px;
+      border-radius: 999px;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    .demo-tab.active {
+      background: #0f0e0d;
+      color: #fffefd;
+    }
+
+    /* Fixed height: scenes cross-fade in place, so the hero never reflows. */
+    .hero-demo-body {
+      position: relative;
+      height: 384px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .hero-demo-scene {
+      position: absolute;
+      inset: 0;
+      padding: 18px 20px;
+      overflow: hidden;
+    }
+
+    .demo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+    }
+
+    /* — Search — */
+    .demo-searchbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fffefd;
+      border: 1.5px solid #0f0e0d;
+      border-radius: 13px;
+      padding: 10px 10px 10px 13px;
+      flex-shrink: 0;
+    }
+
+    .demo-searchbar-text {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.4;
+      color: rgba(0, 0, 0, 0.72);
+      min-height: 1.4em;
+    }
+
+    .demo-find-btn {
+      background: #0f0e0d;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .demo-meta {
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.36);
+      text-align: center;
+    }
+
+    .demo-card {
+      background: #fffefd;
+      border: 1.5px solid #0f0e0d;
+      border-radius: 13px;
+      padding: 11px 13px;
+    }
+
+    .demo-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .demo-name {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0f0e0d;
+    }
+
+    .demo-role {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.5);
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .demo-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 9px;
+    }
+
+    /* — Simulate — */
+    .demo-person-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: #fffefd;
+      border: 1.5px solid #0f0e0d;
+      border-radius: 13px;
+      padding: 10px 13px;
+      flex-shrink: 0;
+    }
+
+    .demo-dims {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .demo-dim-score {
+      font-size: 12px;
+      color: #0f0e0d;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .demo-spot-lead {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 3px;
+    }
+
+    .demo-spot-sub {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .demo-spot-foot {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .demo-spot-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .demo-spot-band {
+      font-size: 15px;
+      color: #fff;
+    }
+
+    /* — Draft — */
+    .demo-email {
+      background: #fffefd;
+      border: 1.5px solid #0f0e0d;
+      border-radius: 13px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .demo-email-head {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 10px 13px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .demo-email-field {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .demo-email-field strong {
+      color: #0f0e0d;
+      font-weight: 500;
+    }
+
+    .demo-email-body {
+      padding: 12px 13px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #0f0e0d;
+      min-height: 108px;
+    }
+
+    .demo-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      color: #0f0e0d;
+      padding: 5px 0;
+    }
+
+    .demo-send-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .demo-send-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* — Track — */
+    .demo-auto {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .demo-auto-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(245, 200, 66, 0.25);
+      flex-shrink: 0;
+    }
+
+    /* — Caption strip under the window — */
+    .demo-captions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+      padding: 0 4px;
+    }
+
+    .demo-caption {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(0, 0, 0, 0.32);
+      transition: color 0.35s ease;
+    }
+
+    .demo-caption.active {
+      color: #0f0e0d;
+    }
+
+    .demo-caption-bar {
+      display: block;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.1);
+      margin-bottom: 7px;
+      overflow: hidden;
+    }
+
+    .demo-caption-fill {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: #0f0e0d;
+    }
+
+    @media (max-width: 900px) {
+      .hero-demo-body {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero-demo-body {
+        height: 420px;
+      }
+
+      .hero-demo-scene {
+        padding: 14px 14px;
+      }
+
+      .demo-dims {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px 10px;
+      }
+
+      .demo-captions {
+        gap: 6px;
+        margin-top: 14px;
+      }
+
+      .demo-caption {
+        font-size: 9.5px;
+      }
+    }
+
+
+    /* Rebalanced hero split: the walkthrough window carries the page now, so
+       the text column narrows and the overall hero widens to give it room.
+       These override the base .hero rules earlier in this file. */
+    @media (min-width: 901px) {
+      .hero {
+        max-width: 1280px;
+        gap: 64px;
+        padding: 100px 48px 72px;
+      }
+
+      .hero-text {
+        width: 418px;
+      }
+
+      /* Outranks `.hero-mockup .mockup { max-width: 580px }`, which was sized
+         for the old static screenshot. */
+      .hero-mockup .hero-demo-window {
+        max-width: none;
+      }
+    }
+
+    @media (min-width: 1180px) {
+      .hero-text {
+        width: 440px;
+      }
+    }
+
+
+    /* Stacked hero: .hero-grid-split centres its children, so the demo column
+       would otherwise shrink to its intrinsic width instead of filling. */
+    @media (max-width: 900px) {
+      .hero-mockup {
+        width: 100%;
+        align-self: stretch;
+      }
+    }
+
+    .demo-selectbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
+      align-self: center;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 999px;
+      padding: 5px 5px 5px 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-selectbar-count {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .demo-selectbar-count strong {
+      color: #0f0e0d;
+      font-weight: 600;
+    }
+
+    .demo-selectbar-btn {
+      background: #0f0e0d;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════
+       PROBLEM (capped / blind / silent) + PILLARS (search / simulate / automate)
+       ═══════════════════════════════════════════════════════════════ */
+
+    .problem-triple {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+
+    .problem-card {
+      padding: 32px 30px;
+    }
+
+    .problem-num {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+
+    .problem-card-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #0f0e0d;
+      margin-bottom: 10px;
+    }
+
+    .problem-card-body {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #4a4744;
+    }
+
+    .habits-block {
+      margin-top: 56px;
+      text-align: center;
+    }
+
+    .habits-lead {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: #4a4744;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .habits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      text-align: left;
+    }
+
+    .habit {
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+    }
+
+    .habit-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f0e0d;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .habit-fail {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #4a4744;
+      margin-bottom: 6px;
+    }
+
+    .habit-x {
+      color: #d97706;
+      font-size: 9px;
+      line-height: 1.7;
+      flex-shrink: 0;
+    }
+
+    .habits-foot {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(0, 0, 0, 0.42);
+      margin-top: 26px;
+    }
+
+    /* — The three pillars — */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .pillar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pillar .mini-search {
+      margin-top: 20px;
+    }
+
+    .pillar-fit {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 10px 13px;
+    }
+
+    .pillar .stage-pipe {
+      margin-top: 20px;
+      gap: 6px;
+    }
+
+    .pillar .stage-col {
+      min-width: 0;
+      padding: 10px 4px;
+    }
+
+    .pillar .stage-count {
+      font-size: 20px;
+    }
+
+    .pillar .stage-name {
+      font-size: 8.5px;
+    }
+
+    /* The one headline statistic, from the pilot deck. */
+    .sec-stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .sec-stat-num {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 52px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .sec-stat-label {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #4a4744;
+    }
+
+    @media (max-width: 900px) {
+      .problem-triple,
+      .pillars {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 44px;
+      }
+
+      .habits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .habits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-card {
+        padding: 26px 22px;
+      }
+
+      .sec-stat-num {
+        font-size: 42px;
+      }
+    }
+
+    /* A short string only samples a sliver of a 300%-wide ramp, so it reads as
+       one flat colour. Tighten the ramp for numerals and other short accents. */
+    .chromatic-text.chromatic-tight {
+      background-size: 140% 100%;
+    }

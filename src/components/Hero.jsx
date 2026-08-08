@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePostHog } from 'posthog-js/react';
-import { MockAvatar, OverlapChip, TierPill } from './AppMock';
+import HeroDemo from './HeroDemo';
 
 export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpenManifesto }) {
     const posthog = usePostHog();
@@ -135,91 +135,9 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                     </motion.div>
                 </div>
 
-                {/* RIGHT COMPONENT: MOCKUP */}
+                {/* RIGHT COMPONENT: THE LIVE PRODUCT WALKTHROUGH */}
                 <motion.div variants={mockupAnim} initial="hidden" animate="show" className="hero-mockup">
-                    <div className="mockup" style={{ width: '100%', maxWidth: '600px', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.9)', borderRadius: '16px', boxShadow: '0 24px 48px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-
-                        <div className="mockup-topbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderBottom: '1px solid rgba(0,0,0,0.06)', background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%)' }}>
-                            <div className="dots" style={{ display: 'flex', gap: '6px' }}>
-                                <div className="dot-r" style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ff5f56' }}></div>
-                                <div className="dot-y" style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ffbd2e' }}></div>
-                                <div className="dot-g" style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#27c93f' }}></div>
-                            </div>
-                            <span className="mockup-topbar-title" style={{ fontFamily: 'Geist, sans-serif', fontSize: '11px', fontWeight: 500, color: 'rgba(0,0,0,0.4)', letterSpacing: '0.02em' }}>Supercharged</span>
-                            <div className="topbar-avatar" style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}></div>
-                        </div>
-
-                        {/* The app's Discover screen: top nav, plain-English
-                            search, results ranked by fit. */}
-                        {/* Its own class, not .mockup-body — that one is capped at
-                            max-height:380px for the old sidebar layout. */}
-                        <div className="mockup-discover" style={{ display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.6)' }}>
-
-                            <div className="mockup-nav" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '12px 16px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                                <span style={{ fontSize: '11px', fontWeight: 600, color: '#fffefd', background: '#0f0e0d', padding: '5px 12px', borderRadius: '999px' }}>Discover</span>
-                                <span style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(0,0,0,0.45)', padding: '5px 12px' }}>Outreach</span>
-                                <span style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(0,0,0,0.45)', padding: '5px 12px' }}>Tracking</span>
-                                <span style={{ marginLeft: 'auto', width: '24px', height: '24px', borderRadius: '50%', background: '#0f0e0d', color: '#fffefd', fontSize: '9px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>You</span>
-                            </div>
-
-                            <div style={{ padding: '20px 20px 16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-
-                                <div style={{ background: '#fffefd', border: '1.5px solid #0f0e0d', borderRadius: '14px', padding: '11px 13px 10px', display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
-                                    <span style={{ flex: 1, fontSize: '11.5px', lineHeight: 1.45, color: 'rgba(0,0,0,0.72)' }}>
-                                        Spring week at J.P. Morgan &mdash; Sales &amp; Trading, Oxford alumni if possible
-                                    </span>
-                                    <span style={{ background: '#0f0e0d', color: '#fff', fontSize: '10px', fontWeight: 600, padding: '5px 12px', borderRadius: '999px', flexShrink: 0 }}>Find</span>
-                                </div>
-
-                                <div style={{ fontFamily: 'var(--font-body)', fontSize: '9.5px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.36)', textAlign: 'center' }}>
-                                    14 people found &middot; ranked by fit
-                                </div>
-
-                                <div style={{ background: '#fffefd', border: '1.5px solid #0f0e0d', borderRadius: '14px', padding: '13px 14px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        <MockAvatar name="Priya Raghavan" i={0} size={34} />
-                                        <div style={{ flex: 1, minWidth: 0 }}>
-                                            <div style={{ fontSize: '13px', fontWeight: 600, color: '#0f0e0d' }}>
-                                                Priya Raghavan<span className="alumni-badge">ALUMNI</span>
-                                            </div>
-                                            <div style={{ fontSize: '10.5px', color: 'rgba(0,0,0,0.5)', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                Analyst, Rates Trading &middot; J.P. Morgan &middot; London
-                                            </div>
-                                        </div>
-                                        <TierPill tier="top" />
-                                    </div>
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '10px' }}>
-                                        <OverlapChip i={0}>Same university &middot; Oxford</OverlapChip>
-                                        <OverlapChip i={1}>Same course &middot; Geography</OverlapChip>
-                                    </div>
-                                </div>
-
-                                <div style={{ background: '#fffefd', border: '1.5px solid #0f0e0d', borderRadius: '14px', padding: '13px 14px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        <MockAvatar name="Tom Beckett" i={3} size={34} />
-                                        <div style={{ flex: 1, minWidth: 0 }}>
-                                            <div style={{ fontSize: '13px', fontWeight: 600, color: '#0f0e0d' }}>Tom Beckett</div>
-                                            <div style={{ fontSize: '10.5px', color: 'rgba(0,0,0,0.5)', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                VP, Commodities &middot; J.P. Morgan &middot; London
-                                            </div>
-                                        </div>
-                                        <TierPill tier="strong" />
-                                    </div>
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '10px' }}>
-                                        <OverlapChip i={2}>Same society &middot; Geography Soc</OverlapChip>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ marginTop: 'auto', padding: '0 20px 18px', display: 'flex', justifyContent: 'center' }}>
-                                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.92)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '999px', padding: '5px 5px 5px 14px', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }}>
-                                    <span style={{ fontSize: '11px', color: 'rgba(0,0,0,0.6)' }}><strong style={{ color: '#0f0e0d' }}>14</strong> selected</span>
-                                    <span style={{ background: '#0f0e0d', color: '#fff', fontSize: '10.5px', fontWeight: 600, padding: '6px 13px', borderRadius: '999px' }}>Draft outreach &rarr;</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    <HeroDemo />
                 </motion.div>
 
             </div>

@@ -1,24 +1,46 @@
 import { motion } from 'framer-motion';
 
+/**
+ * The problem, as framed in the pitch deck: manual outreach is capped on
+ * volume, blind on priority, and silent on feedback — followed by the four
+ * disconnected habits students currently patch together.
+ */
+
+const PROBLEMS = [
+    {
+        n: '01',
+        title: 'Capped on volume',
+        body: 'Every message written by hand puts a hard ceiling on how many people you can ever reach. You manage maybe a hundred a month — and the one contact who would actually change things could be number ten thousand.',
+    },
+    {
+        n: '02',
+        title: 'Blind on priority',
+        body: 'There is no signal for who is worth the time until you have already spent it. A long shot gets exactly the same effort as the person who would have replied within the hour.',
+    },
+    {
+        n: '03',
+        title: 'Silent on feedback',
+        body: 'You find out whether it worked only once it has gone. Framing, timing and angle are all guessed blind, so a failed approach gets repeated on the very next attempt.',
+    },
+];
+
+const HABITS = [
+    { label: 'LinkedIn cold messages', fails: ['High volume', 'Low response rate', 'No idea what worked'] },
+    { label: 'Society events and panels', fails: ['Barely any one-to-one', 'Capped by the calendar', 'Hard to follow up'] },
+    { label: 'Alumni lists and coffee chats', fails: ['One profile at a time', 'No sense of fit first', 'Slow to scale'] },
+    { label: 'Spreadsheets and memory', fails: ['Tracked entirely by hand', 'Follow-ups slip', 'No view of the pipeline'] },
+];
+
 export default function ProblemSection() {
     const container = {
         hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.2 }
-        }
+        show: { opacity: 1, transition: { staggerChildren: 0.15 } },
     };
 
     const item = {
         hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
     };
-
-    const cross = { width: '20px', height: '20px', background: 'rgba(220,38,38,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f87171', fontSize: '11px', flexShrink: 0 };
-    const tick = { width: '20px', height: '20px', background: 'rgba(74,222,128,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4ade80', fontSize: '11px', flexShrink: 0 };
-    const row = { display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px' };
-    const lastRow = { display: 'flex', alignItems: 'flex-start', gap: '12px' };
-    const text = { fontFamily: 'var(--font-body)', fontSize: '15px', color: '#4a4744', lineHeight: 1.4 };
 
     return (
         <div className="section-bg">
@@ -28,19 +50,19 @@ export default function ProblemSection() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="scroll-hidden"
+                    viewport={{ once: true, margin: '-100px' }}
                     style={{ textAlign: 'center' }}
                 >
                     <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.1em', color: 'var(--label-color)', textTransform: 'uppercase', marginBottom: '24px' }}>
                         The problem with breaking in
                     </p>
-                    <h2 className="problem-headline" style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '52px', color: '#0f0e0d', letterSpacing: '-0.03em', lineHeight: 1.05, maxWidth: '900px', margin: '0 auto' }}>
-                        Applications get you <span className="gradient-num">ranked</span>.<br />
-                        Conversations get you <span className="gradient-num">remembered</span>.
+                    <h2 className="problem-headline" style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '52px', color: '#0f0e0d', letterSpacing: '-0.03em', lineHeight: 1.05, maxWidth: '860px', margin: '0 auto' }}>
+                        Doing it by hand is <span className="gradient-num">capped</span>,{' '}
+                        <span className="gradient-num">blind</span> and{' '}
+                        <span className="gradient-num">silent</span>.
                     </h2>
                     <p style={{ fontFamily: 'var(--font-body)', fontSize: '17px', color: '#4a4744', maxWidth: '520px', margin: '20px auto 0', lineHeight: 1.7 }}>
-                        Portals rank you against thousands of near-identical CVs. Fifteen minutes with someone already on the desk changes which pile you land in &mdash; and almost nobody knows how to get that call.
+                        Applications rank you against thousands of near-identical CVs. Fifteen minutes with someone already on the desk changes which pile you land in &mdash; and almost nobody knows how to get that call.
                     </p>
                 </motion.div>
 
@@ -48,62 +70,43 @@ export default function ProblemSection() {
                     variants={container}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
-                    style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '64px' }}
-                    className="problem-grid-new"
+                    viewport={{ once: true, margin: '-100px' }}
+                    className="problem-triple"
                 >
+                    {PROBLEMS.map((p) => (
+                        <motion.div key={p.n} variants={item} className="glass-card problem-card">
+                            <span className="problem-num">{p.n}</span>
+                            <h3 className="problem-card-title">{p.title}</h3>
+                            <p className="problem-card-body">{p.body}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
 
-                    <motion.div variants={item} className="glass-card" style={{ padding: '36px' }}>
-                        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.1em', color: 'var(--label-color)', textTransform: 'uppercase', marginBottom: '20px' }}>
-                            The Old Way
-                        </p>
-                        <div style={row}>
-                            <span style={cross}>&#10005;</span>
-                            <span style={text}>Same portal, same CV, same eight thousand applicants</span>
-                        </div>
-                        <div style={row}>
-                            <span style={cross}>&#10005;</span>
-                            <span style={text}>Cold LinkedIn DMs to people who never open them</span>
-                        </div>
-                        <div style={row}>
-                            <span style={cross}>&#10005;</span>
-                            <span style={text}>&ldquo;Happy to chat!&rdquo; &mdash; and then the thread dies</span>
-                        </div>
-                        <div style={lastRow}>
-                            <span style={cross}>&#10005;</span>
-                            <span style={text}>No idea whether your email landed well or badly</span>
-                        </div>
-                    </motion.div>
-
-                    <motion.div variants={item} className="glass-card" style={{ padding: '36px' }}>
-                        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.1em', color: 'var(--label-color)', textTransform: 'uppercase', marginBottom: '20px' }}>
-                            With Supercharged
-                        </p>
-                        <div style={row}>
-                            <span style={tick}>&#10003;</span>
-                            <span style={text}>Say the season, role and firms in plain English</span>
-                        </div>
-                        <div style={row}>
-                            <span style={tick}>&#10003;</span>
-                            <span style={text}>It finds the alumni and analysts actually inside them</span>
-                        </div>
-                        <div style={row}>
-                            <span style={tick}>&#10003;</span>
-                            <span style={text}>Each email calibrated to their read and your voice</span>
-                        </div>
-                        <div style={lastRow}>
-                            <span style={tick}>&#10003;</span>
-                            <span style={text}>Sent from your inbox, tracked through to the offer</span>
-                        </div>
-
-                        <div style={{ background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '12px', padding: '12px 16px', marginTop: '28px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span style={{ color: '#d97706', fontSize: '12px' }}>&#10022;</span>
-                            <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', fontStyle: 'italic', color: 'rgba(0,0,0,0.35)', flex: 1 }}>
-                                Spring week at J.P. Morgan, Sales &amp; Trading...
-                            </span>
-                        </div>
-                    </motion.div>
-
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    className="habits-block"
+                >
+                    <p className="habits-lead">
+                        Instead you patch together four disconnected habits, none of which talk to each other.
+                    </p>
+                    <div className="habits-grid">
+                        {HABITS.map((h) => (
+                            <div key={h.label} className="habit">
+                                <p className="habit-label">{h.label}</p>
+                                {h.fails.map((f) => (
+                                    <p key={f} className="habit-fail">
+                                        <span className="habit-x">&#10005;</span> {f}
+                                    </p>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <p className="habits-foot">
+                        Hours a week, on activity that rarely turns into a real conversation.
+                    </p>
                 </motion.div>
             </div>
         </div>

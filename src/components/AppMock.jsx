@@ -10,6 +10,8 @@
  * ../lib/appMockData so this file only exports components.
  */
 
+import { motion } from 'framer-motion';
+
 /** compatColor from components/ui/ScoreRing.tsx. */
 function compatColor(value) {
     if (value >= 85) return '#22A85A';
@@ -17,16 +19,21 @@ function compatColor(value) {
     return '#6B6B6B';
 }
 
-/** The compatibility ring the app draws next to every result. */
-export function FitRing({ value, size = 46 }) {
+/** The compatibility ring the app draws next to every result.
+ *  Pass `animate` to sweep the arc in, as the app does on mount. */
+export function FitRing({ value, size = 46, animate = false }) {
     const stroke = 4;
     const r = (size - stroke) / 2;
     const c = 2 * Math.PI * r;
+    const Arc = animate ? motion.circle : 'circle';
+    const sweep = animate
+        ? { initial: { strokeDashoffset: c }, animate: { strokeDashoffset: c * (1 - value / 100) }, transition: { duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] } }
+        : { strokeDashoffset: c * (1 - value / 100) };
     return (
         <div style={{ position: 'relative', width: size, height: size, flexShrink: 0 }}>
             <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
                 <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(15,14,13,0.07)" strokeWidth={stroke} />
-                <circle
+                <Arc
                     cx={size / 2}
                     cy={size / 2}
                     r={r}
@@ -35,7 +42,7 @@ export function FitRing({ value, size = 46 }) {
                     strokeWidth={stroke}
                     strokeLinecap="round"
                     strokeDasharray={c}
-                    strokeDashoffset={c * (1 - value / 100)}
+                    {...sweep}
                 />
             </svg>
             <span
