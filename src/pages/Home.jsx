@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import ProblemSection from '../components/ProblemSection';
-import Features from '../components/Features';
-import Discover from '../components/Discover';
-import Inbox from '../components/Inbox';
+import TabSections from '../components/TabSections';
 import Privacy from '../components/Privacy';
 import { useNavigate } from 'react-router-dom';
 import { usePostHog } from 'posthog-js/react';
@@ -25,11 +23,8 @@ export default function Home({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
             <div className="hero-spacer" style={{ height: '48px' }}></div>
             <ProblemSection />
 
-            <Features />
-
-            <Discover />
-
-            <Inbox />
+            {/* One section per tab, in the same order as the hero spokes. */}
+            <TabSections />
 
             <div className="section-divider"></div>
 
@@ -88,8 +83,9 @@ export default function Home({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                     <div>
                         <p className="footer-col-title">Product</p>
                         <a href="#how" className="footer-link">Discover</a>
+                        <a href="#simulate" className="footer-link">Simulate</a>
                         <a href="#outreach" className="footer-link">Outreach</a>
-                        <a href="#outreach" className="footer-link">Tracking</a>
+                        <a href="#tracking" className="footer-link">Tracking</a>
                     </div>
                     <div>
                         <p className="footer-col-title">Company</p>

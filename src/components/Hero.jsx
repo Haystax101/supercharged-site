@@ -30,7 +30,7 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                 </a>
                 <div className="nav-center">
                     <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); onOpenAbout(); }}>About</a>
-                    <a href="#features" className="nav-link">Features</a>
+                    <a href="#how" className="nav-link">Features</a>
                     <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); onOpenManifesto(); }}>Manifesto</a>
                 </div>
                 <div className="nav-right">
@@ -57,7 +57,7 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                     >
                         <div className="dropdown-links">
                             <a href="#" onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onOpenAbout(); }}>About</a>
-                            <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
+                            <a href="#how" onClick={() => setIsMenuOpen(false)}>Features</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onOpenManifesto(); }}>Manifesto</a>
                         </div>
                         <div className="dropdown-divider"></div>
