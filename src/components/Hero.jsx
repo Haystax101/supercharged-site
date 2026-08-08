@@ -98,12 +98,16 @@ export default function Hero({ waitlistCount, onOpenWaitlist, onOpenAbout, onOpe
                                 (lib/onboardingData.ts). The 5th item repeats the
                                 1st so the loop has no visible seam. */}
                             <span className="rotator" aria-label="internships, placements, springs or grad roles">
-                                <span className="rotator-track chromatic-text" aria-hidden="true">
-                                    <span>internships</span>
-                                    <span>placements</span>
-                                    <span>springs</span>
-                                    <span>grad roles</span>
-                                    <span>internships</span>
+                                {/* The gradient goes on each word, not the track:
+                                    a background-clip:text layer spanning all five
+                                    escapes the parent's overflow clip, and each
+                                    word gets the full colour ramp this way. */}
+                                <span className="rotator-track" aria-hidden="true">
+                                    <span className="chromatic-text">internships</span>
+                                    <span className="chromatic-text">placements</span>
+                                    <span className="chromatic-text">springs</span>
+                                    <span className="chromatic-text">grad roles</span>
+                                    <span className="chromatic-text">internships</span>
                                 </span>
                             </span>
                         </span>

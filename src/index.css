@@ -3988,10 +3988,14 @@
       flex-wrap: nowrap;
     }
 
+    /* clip-path as well as overflow: a transformed descendant that paints via
+       background-clip:text gets its own composited layer, which overflow alone
+       does not reliably clip — neighbouring words bled past the edges. */
     .headline .rotator {
       display: block;
       height: 1.3em;
       overflow: hidden;
+      clip-path: inset(0);
     }
 
     .rotator-track {
