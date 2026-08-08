@@ -996,11 +996,13 @@
       margin-top: 12px;
     }
 
-    /* Mini UI elements inside cards */
+    /* Mini UI elements inside cards. Raised glass, matching the demo window's
+       surfaces — a grey inset panel reads as disabled next to them. */
     .mini-search {
-      background: rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 13px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(0, 0, 0, 0.05);
       padding: 12px 16px;
       display: flex;
       align-items: center;
@@ -4385,9 +4387,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: #fffefd;
-      border: 1.5px solid #0f0e0d;
-      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
       padding: 10px 10px 10px 13px;
       flex-shrink: 0;
     }
@@ -4423,9 +4426,10 @@
     }
 
     .demo-card {
-      background: #fffefd;
-      border: 1.5px solid #0f0e0d;
-      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
       padding: 11px 13px;
     }
 
@@ -4464,9 +4468,10 @@
       display: flex;
       align-items: center;
       gap: 11px;
-      background: #fffefd;
-      border: 1.5px solid #0f0e0d;
-      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
       padding: 10px 13px;
       flex-shrink: 0;
     }
@@ -4525,9 +4530,10 @@
 
     /* — Draft — */
     .demo-email {
-      background: #fffefd;
-      border: 1.5px solid #0f0e0d;
-      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
       overflow: hidden;
       flex-shrink: 0;
     }
