@@ -4005,11 +4005,15 @@
 
     /* Box height == line-height, so half-leading gives descenders ("p" in
        placements, "g" in grad roles) room instead of clipping them. */
+    /* The rotator box is as wide as the longest word, so centred text (inherited
+       from the centred headline) left the gap after "Find" changing by ~38px as
+       the word swapped. Left-align so every word starts at the same x. */
     .headline .rotator-track span {
       display: block;
       height: 1.3em;
       line-height: 1.3em;
       white-space: nowrap;
+      text-align: left;
     }
 
     /* 4 words + a clone of the first, so the loop point is invisible. */
